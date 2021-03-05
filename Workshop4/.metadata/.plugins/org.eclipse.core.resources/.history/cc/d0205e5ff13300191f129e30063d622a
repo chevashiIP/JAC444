@@ -1,0 +1,21 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Task3 {
+	public void phonechange() {
+		Scanner input = new Scanner(System.in);
+		boolean correct = false;
+		
+		while(!correct) {
+			try {
+				System.out.print("Enter phone number: ");
+				int number = input.nextInt();
+				correct = true;
+			} catch(InputMismatchException e) {
+				System.out.println("Wrong input");
+				input.next();
+			}
+		}
+		System.out.print("Phone is correct");
+	}
+}

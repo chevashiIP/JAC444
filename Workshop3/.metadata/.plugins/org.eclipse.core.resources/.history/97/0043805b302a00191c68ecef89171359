@@ -1,0 +1,73 @@
+import java.text.DecimalFormat;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class Task2 {
+	static double[][][] Banks;
+	static final int ID = 0;
+    static final int LOAN = 1;
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		boolean correct = false;
+		boolean correct1 = false;
+		boolean correct2 = false;
+		int n = 0;
+		int limit = 201;
+		
+		double[][][] Banks = new double[][][] {
+           {{25, 0}, {1, 100.5}, {4, 320.5}},
+           {{125, 0},  {2, 40}, {3, 85}},
+           {{175, 0}, {0, 125}, {3, 75}},
+           {{75, 0},  {0, 125}},
+           {{181, 0}, {2, 125}}
+        };
+		
+      displayBank(Banks);
+      boolean[] unsafeIndex = scanBanks(Banks, limit);
+      
+      System.out.print("The unsafe banks are: ");
+      for (int i = 0; i < unsafeIndex.length; i++) {
+          if(unsafeIndex[i]) {
+        	  System.out.print(i + " ");
+          }
+      }
+	}
+	 public static void displayBank(double[][][] bankarr) {
+		 	DecimalFormat df = new DecimalFormat("###");
+	        for (int banks = 0; banks < bankarr.length; banks++) {
+	        	System.out.print("Bank #"+ banks +" -> Balance: " + bankarr[banks][0][0] + " -> Number of Banks Loaned: ");
+	        	System.out.print(bankarr[banks].length -1);
+
+	            for (int Loanedbanks = 1; Loanedbanks < bankarr[banks].length; Loanedbanks++) {
+	            	System.out.print(" Bank ID: " + df.format(bankarr[banks][Loanedbanks][ID]) + " -> Amount: " + bankarr[banks][Loanedbanks][LOAN]);
+	            }
+	            System.out.println("");
+	        }
+	 }
+	 
+	 public static boolean[] scanBanks(double[][][] bankarr, int limit) {
+		 boolean[] UnsafeBanks = new boolean[bankarr.length];
+		 boolean isSafe = false;
+		 double assettotal;
+		 
+		 while(!isSafe) {
+			 isSafe = true;
+			 
+			 for(int banks = 0; banks < bankarr.length; banks++) {
+				 assettotal = bankarr[banks][0][0];
+				 for(int loanbank = 1; loanbank < bankarr[banks].length; loanbank++) {
+					 int index = (int)bankarr[banks][loanbank][ID];
+					 if(!UnsafeBanks[index]) {
+						 assettotal += bankarr[banks][loanbank][LOAN];
+					 }
+				 }
+				 if(assettotal < limit && !UnsafeBanks[banks]) {
+					 UnsafeBanks[banks] = true;
+					 isSafe = false;
+				 }
+			 }
+		 }
+		 
+		 return UnsafeBanks;
+	 }
+}

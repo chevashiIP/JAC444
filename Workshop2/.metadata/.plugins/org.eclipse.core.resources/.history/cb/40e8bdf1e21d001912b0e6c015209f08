@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class Task1 {
+	static Scanner input = new Scanner(System.in);
+	public static void main(String[] args){
+		//String[] string = {"write", "that", "puppers", "pixel"};
+		String cont;
+		
+		do {
+			int wrong = 0;
+			char[] randomword = createword();
+			char[] hidden = new char[randomword.length];
+			for (int i = 0; i < hidden.length; i++) {
+				hidden[i] = '*';
+			}
+			do {
+				
+				
+				
+				
+			} while (!gameover(hidden));
+			
+			System.out.println("Do you want to guess another word? Enter y or n>");
+			cont = input.next();
+			
+		} while (cont.charAt(0) == 'y');
+		
+	};
+	
+	public static char[] createword() {
+		String[] words = {"write", "that", "puppers", "pixel"};
+		String word = words[(int)(Math.random() * words.length)];
+		
+		char[] genword = new char[word.length()];
+		
+		for(int i = 0; i < genword.length; i++) {
+			genword[i] = word.charAt(i);
+		}
+		
+		return genword;
+	}
+	
+	public static boolean gameover(char[] y) {
+		for (char i: y) {
+			if (i == '*')
+				return false;
+		}
+		return true;
+	}
+	
+}

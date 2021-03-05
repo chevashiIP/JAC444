@@ -1,0 +1,12 @@
+public class Square extends GeometricObject implements Colorable {
+	private double side;
+	
+	public Square() {
+		
+	}
+
+	@Override
+	public String howToColor() {
+		return "Color all four sides";
+	}
+}

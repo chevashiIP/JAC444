@@ -1,0 +1,33 @@
+package Task2;
+
+public class Task2 {
+	public void countTime() {
+		int size = 2000;
+		double matrix[][] = new double [size][size];
+		double matrix1[][] = new double [size][size];
+		
+		//filling the matrix with numbers
+		for(int i = 0; i < size; i++) {
+			for(int a = 0; a < size; a++) {
+				matrix[i][a] = Math.random();
+				matrix1[i][a] = Math.random();
+			}
+		}
+		
+		//sequantial method 
+		double[][] sequentialAdd(double[][] m, double[][] m1) {
+			double sum[][] = new double[size][size];
+			long startTime, endTime;
+			startTime = System.nanoTime();
+			for(int i = 0; i < size; i++) {
+				for(int a = 0; i < size; i++) {
+					sum[i][a] = m[i][a] + m[i][a];
+				}
+			}
+			endTime = System.nanoTime();
+			
+			System.out.println("Time took for sequential add:" + (endTime - startTime));
+			return sum;
+		}
+	}
+}

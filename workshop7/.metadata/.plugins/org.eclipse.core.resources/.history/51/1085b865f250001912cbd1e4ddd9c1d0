@@ -1,0 +1,98 @@
+package Task1;
+
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+
+public class Task1 extends Application{
+	public void herewego(String[] args) {
+		launch(args);
+	}
+	
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		int num1 = (int)Math.ceil(Math.random() * 10);
+		int num2 = (int)Math.ceil(Math.random() * 10);
+		
+		Task1 quizPanel = new Task1();
+		quizPanel.start(primaryStage, num1, num2);
+	}
+	
+	public void start(Stage primaryStage, int num1, int num2) throws Exception{
+		GridPane pane = new GridPane();
+		pane.setAlignment(Pos.CENTER);
+	    pane.setPadding(new Insets(11.5, 120, 11.5, 120));
+	    pane.setHgap(5.5);
+	    pane.setVgap(5.5);
+	    
+	    Label NumShow = new Label("Two randomly generated numbers are: " + num1 + " and " + num2 + ": ");
+	    GridPane.setHalignment(NumShow, HPos.CENTER);
+	    pane.add(NumShow, 0, 0);
+	    
+	    Label Add = new Label("What is addition of " + num1 + " and " + num2 );
+	    GridPane.setHalignment(Add, HPos.CENTER);
+	    pane.add(Add, 0, 1);
+	    
+	    TextField txtAdd = new TextField();
+	    GridPane.setHalignment(txtAdd, HPos.CENTER);
+	    pane.add(txtAdd, 1, 1);
+	    
+	    Label Sub = new Label("What is substraction of " + num1 + " and " + num2 );
+	    GridPane.setHalignment(Sub, HPos.CENTER);
+	    pane.add(Sub, 0, 2);
+	    
+	    TextField txtSub = new TextField();
+	    GridPane.setHalignment(txtSub, HPos.CENTER);
+	    pane.add(txtSub, 1, 2);
+	    
+	    Label Mul = new Label("What is multiplication of " + num1 + " and " + num2 );
+	    GridPane.setHalignment(Mul, HPos.CENTER);
+	    pane.add(Mul, 0, 3);
+	    
+	    TextField txtMul = new TextField();
+	    GridPane.setHalignment(txtMul, HPos.CENTER);
+	    pane.add(txtMul, 1, 3);
+	    
+	    Label Div = new Label("What is division of " + num1 + " and " + num2 );
+	    GridPane.setHalignment(Div, HPos.CENTER);
+	    pane.add(Div, 0, 4);
+	    
+	    TextField txtDiv = new TextField();
+	    GridPane.setHalignment(txtDiv, HPos.CENTER);
+	    pane.add(txtDiv, 1, 4);
+	    
+	    Label CorrectAnsw = new Label("Number of Correct Answers: ");
+	    GridPane.setHalignment(CorrectAnsw, HPos.CENTER);
+	    pane.add(CorrectAnsw, 0, 5);
+	    
+	    Label CorrectAnswNum = new Label();
+	    GridPane.setHalignment(CorrectAnswNum , HPos.CENTER);
+	    pane.add(CorrectAnswNum, 1, 5);
+	    
+	    Label WrngAnsw = new Label("Number of Wrong Answers: ");
+	    GridPane.setHalignment(WrngAnsw, HPos.CENTER);
+	    pane.add(WrngAnsw, 0, 6);
+	    
+	    Label WrngAnswNum = new Label();
+	    GridPane.setHalignment(WrngAnswNum, HPos.CENTER);
+	    pane.add(WrngAnswNum, 1, 5);
+	    
+	    Scene scene = new Scene(pane);
+	    primaryStage.setTitle("Quiz Application");
+	    primaryStage.setScene(scene);
+	    primaryStage.show();
+	    
+	    
+	}
+}

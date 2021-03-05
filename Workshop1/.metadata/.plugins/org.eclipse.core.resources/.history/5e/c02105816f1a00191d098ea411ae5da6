@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Task3 {
+	private static Scanner input = new Scanner(System.in);
+	public static void main(String[] args){
+		
+		System.out.print("Loan ammount: ");
+		double loan = input.nextInt();
+		
+		System.out.print("Number of Years: ");
+		int years = input.nextInt();
+		
+		System.out.print("Annual Interest Rate: ");
+		double interestrate = input.nextInt();
+		
+		double monthlyRate = interestrate / 1200;
+		
+		double monthlyPayment = loan * monthlyRate / (1 - 1 / 
+				Math.pow(1 + monthlyRate, years * 12));
+		
+		System.out.println("Montly Payment: %.2f" + monthlyPayment);
+		
+		System.out.println("Total Payment: %.2f\n" + (monthlyPayment * 12) * years);
+	}
+}

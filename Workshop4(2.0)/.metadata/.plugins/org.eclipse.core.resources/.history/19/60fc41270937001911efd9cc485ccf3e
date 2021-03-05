@@ -1,0 +1,115 @@
+package Task3;
+
+import java.io.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Task3 {
+	public void phonechange() {
+		Scanner input = new Scanner(System.in);
+		
+		boolean correct = false;
+		int number = 0;
+		char[] word = new char [7];
+		PrintStream printToFile;
+		FileOutputStream output = null;
+		System.out.print("Enter the phone number: ");
+		while(!correct) {
+			try {
+				do {
+					number = input.nextInt();
+					if(size(number) < 7 || size(number) > 7) {
+						System.out.print("Incorrect length of the number. Re-Enter the phone number: ");
+					}
+				} while(size(number) < 7 || size(number) > 7);
+				correct = true;
+			} catch(InputMismatchException e) {
+				System.out.print("Incorrect input. Re-Enter the phone number: ");
+				input.next();
+			}
+		}
+		String newnumber = stringify(number);
+		char numberLetters[][] = {
+	            {'0','0','0'},{'1','1','1'},{'A','B','C'},
+	            {'D','E','F'},{'G','H','I'},{'J','K','L'},
+	            {'M','N','O'},{'P','R','S'},
+	            {'T','U','V'},{'W','X','Y'}
+	    };
+		
+		try {
+            output = new FileOutputStream ("Phonenumber.txt");
+		} catch ( IOException ioEcception ){
+			System.err.println( "Error opening file.");
+		}
+		try {
+			char[] chars = newnumber.toCharArray ();
+			int [] digit = new int [chars.length];
+			for (int i = 0; i < chars.length; i++){
+				digit[i] = Integer.parseInt(String.valueOf(chars[i]));
+			}
+			printToFile = new PrintStream(output);
+			for ( int level0 = 0; level0 < 3; level0 ++ ){
+        	 
+				word[0] = numberLetters[digit[0]][level0];
+             
+					for ( int level1 = 0; level1 < 3; level1 ++ ){
+            	 
+						word[1] = numberLetters[digit[1]][level1];
+
+						for ( int level2 = 0; level2 < 3; level2 ++ ){
+                	 
+							word[2] = numberLetters[digit[2]][level2];
+
+							for ( int level3 = 0; level3 < 3; level3 ++ ){
+                    	 
+								word[3] = numberLetters[digit[3]][level3];
+
+								for ( int level4 = 0; level4 < 3; level4 ++ ){
+                        	 
+									word[4] = numberLetters[digit[4]][level4];
+
+									for ( int level5 = 0; level5 < 3; level5 ++ ){
+                            	 
+										word[5] = numberLetters[digit[5]][level5];
+
+										for ( int level6 = 0; level6 < 3; level6 ++ ){
+                                	 
+											word[6] = numberLetters[digit[6]][level6];
+											printToFile.println(word);
+											System.out.println(word);
+											//printToFile.print("\n");
+										}
+									}
+								}
+							}
+						}
+					}
+			}
+
+         System.out.println("File written.");
+         System.exit(1);
+		}catch (Exception exception ){
+         System.err.println( "Error writing to file.");
+         System.exit(1);
+		}
+		
+		try {
+            if ( output != null )
+                output.close();
+        } catch (IOException ioException ){
+            System.err.println( "Error closing file.");
+            System.exit(1);
+        }
+
+	}
+	public static int size(int number){
+		String num = number + "";
+		return num.length();
+	}
+	
+	public static String stringify(int number){
+		String num = number + "";
+		return num;
+	}
+	
+}

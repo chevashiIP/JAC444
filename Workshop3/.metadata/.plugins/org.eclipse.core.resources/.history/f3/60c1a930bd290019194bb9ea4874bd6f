@@ -1,0 +1,36 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class Task2 {
+	static double[][][] Banks;
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		boolean correct = false;
+		boolean correct1 = false;
+		int n = 0;
+		int limit = 0;
+		
+		while(!correct) {
+			try {
+				System.out.print("Number of banks: ");
+				n = input.nextInt();
+				correct = true;
+			} catch(InputMismatchException e) {
+
+				input.next();
+			}
+		}
+		
+		while(!correct1) {
+			try {
+				System.out.print("Minimum asset limit: ");
+				limit = input.nextInt();
+			} catch(InputMismatchException e) {
+				System.out.print("Re-Enter the minimum asset limit: ");
+				input.next();
+			}
+		}
+		
+		System.out.println(n + " "+ limit);
+	}
+}

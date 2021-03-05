@@ -1,0 +1,79 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class Task3 {
+	public static void main(String[] args){
+		long creditnum = 0;
+		boolean correct = false;
+		System.out.println("Enter a credit card number as a long integer: ");
+		while(!correct) {
+			Scanner input = new Scanner(System.in);
+			try {
+				int count = 0;
+				long num = 0;
+				do {
+					creditnum = input.nextLong();
+					num = creditnum;
+					while(num!=0) {
+						num /= 10;
+						++count;
+					}
+					if(count < 16 || count >= 16) {
+						System.out.println("Incorrect input. Enter a new credit card number: ");
+					}
+				} while(count < 16 || count >= 16);
+				correct = true;
+			} catch(InputMismatchException e) {
+				System.out.print("Incorrect format. Enter a credit card number: ");
+				input.next();
+			}
+		}
+		System.out.println(creditnum + " is " + (isValid(creditnum) ? "valid" : "invalid"));
+		
+	}
+	public static boolean isValid(long number) {
+		boolean valid =
+				(size(number) >= 13 && size(number) <= 16) &&
+				(prefixmatch(number, 4) || prefixmatch(number, 5) ||
+				prefixmatch(number, 37) || prefixmatch(number, 6)) &&
+				((sumofeven(number) + sumofodd(number)) % 10 == 0);
+
+			return valid;
+	}
+	public static int sumofeven(long number){
+		int sum = 0;
+		String num = number + "";
+		for (int i = size(number) - 2; i >= 0; i -= 2) {
+			sum += singledig(Integer.parseInt(num.charAt(i) + "") * 2);
+		}
+		return sum;
+	}
+	public static int singledig(int number){
+		if (number < 9){
+			return number;
+		}else{
+			return number / 10 + number % 10;
+		}
+	}
+	public static int sumofodd(long number){
+		int sum = 0;
+		String num = number + "";
+		for (int i = size(number) - 1; i >= 0; i -= 2) {
+			sum += Integer.parseInt(num.charAt(i) + "");
+		}
+		return sum;
+	}
+	public static boolean prefixmatch(long number, int j){
+		return prefix(number, size(j)) == j;
+	}
+	public static int size(long number){
+		String num = number + "";
+		return num.length();
+	}
+	public static long prefix(long number, int j){
+		if (size(number) > j)  {
+			String num = number + "";
+			return  Long.parseLong(num.substring(0, j));
+		}
+		return number;
+	}
+}

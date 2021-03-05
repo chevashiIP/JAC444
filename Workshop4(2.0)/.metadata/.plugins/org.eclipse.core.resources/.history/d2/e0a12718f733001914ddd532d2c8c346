@@ -1,0 +1,50 @@
+package Task3;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Task3 {
+	public void phonechange() {
+		Scanner input = new Scanner(System.in);
+		boolean correct = false;
+		int number = 0;
+		System.out.print("Enter the phone number: ");
+		while(!correct) {
+			try {
+				do {
+					number = input.nextInt();
+					if(size(number) < 7 || size(number) > 7) {
+						System.out.print("Incorrect length of the number. Re-Enter the phone number: ");
+					}
+				} while(size(number) < 7 || size(number) > 7);
+				correct = true;
+			} catch(InputMismatchException e) {
+				System.out.print("Incorrect input. Re-Enter the phone number: ");
+				input.next();
+			}
+		}
+		
+		String newnumber = stringify(number);
+		
+		char numberLetters[][] = {
+	            {'0','0','0'},{'1','1','1'},{'A','B','C'},
+	            {'D','E','F'},{'G','H','I'},{'J','K','L'},
+	            {'M','N','O'},{'P','R','S'},
+	            {'T','U','V'},{'W','X','Y'}
+	    };
+		
+		System.out.print(newnumber);
+		
+	}
+
+	public static int size(int number){
+		String num = number + "";
+		return num.length();
+	}
+	
+	public static String stringify(int number){
+		String num = number + "";
+		return num;
+	}
+	
+}

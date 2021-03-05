@@ -1,0 +1,10 @@
+public class Square extends GeometricObject implements Colorable{
+	
+	public Square() {
+	}
+	
+	
+	public String howToColor() {
+		return "Color all four sides";
+	}
+}

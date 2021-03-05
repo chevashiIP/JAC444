@@ -1,0 +1,83 @@
+import java.text.DecimalFormat;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class Task2 {
+	static double[][][] Banks;
+	static final int ID = 0;
+    static final int LOAN = 1;
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		boolean correct = false;
+		boolean correct1 = false;
+		boolean correct2 = false;
+		int n = 0;
+		int limit = 0;
+		
+		while(!correct) {
+			try {
+				System.out.print("Number of ms: ");
+				n = input.nextInt();
+				correct = true;
+			} catch(InputMismatchException e) {
+				System.out.println("Wrong number of ms");
+				input.next();
+			}
+		}
+		
+		while(!correct1) {
+			try {
+				System.out.print("minimum asset limit: ");
+				limit = input.nextInt();
+				correct1 = true;
+			} catch(InputMismatchException e) {
+				System.out.print("Wrong number of limit");
+				input.next();
+			}
+		}
+		
+		Banks = new double[n][][];
+		
+		System.out.println("Example:");
+        System.out.println("m # 0 -> Balance: 25 -> Number of ms Loaned: 2 -> m ID: 1 -> Amount: 100.5 -> m ID: 4 -> Amount: 320.5");
+        
+        while(!correct2) {
+        	try {
+        		for (int i = 0; i < Banks.length; i++) {
+        			System.out.print("m #"+ i +" -> Balance: ");
+        			double balance = input.nextDouble();
+        			System.out.print("Numbers of ms Loaned: ");
+        			int Loanedms = input.nextInt();
+        	
+        			Banks[i] = new double[++Loanedms][2];
+        			Banks[i][0][0] = balance;
+        	
+        			for (int j = 1; j < Banks[i].length; j++) {
+        				System.out.print("m ID: ");
+        				Banks[i][j][ID] = input.nextInt();
+        				System.out.print("Ammount: ");
+        				Banks[i][j][LOAN] = input.nextDouble();
+        			}
+        			correct2 = true;
+        		}
+        	} catch (InputMismatchException e) {
+        		correct2 = false;
+        		System.out.println("Wrong Input, start over");
+        		input.next();
+        	}
+        }
+      displayms(Banks);
+	}
+	 public static void displayms(double[][][] a) {
+		 	DecimalFormat df = new DecimalFormat("###");
+	        for (int banks = 0; banks < a.length; banks++) {
+	        	System.out.print("m #"+ banks +" -> Balance: " + a[banks][0][0] + " -> Number of ms Loaned: ");
+	        	System.out.print(a[banks].length -1);
+
+	            for (int Loanedms = 1; Loanedms < a[banks].length; Loanedms++) {
+	            	System.out.print(" m ID: " + df.format(a[banks][Loanedms][ID]) + " -> Amount: " + a[banks][Loanedms][LOAN]);
+	            }
+	            System.out.println("");
+	        }
+	    }
+}

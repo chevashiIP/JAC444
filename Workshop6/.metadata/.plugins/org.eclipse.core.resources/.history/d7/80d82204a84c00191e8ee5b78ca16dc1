@@ -1,0 +1,23 @@
+ackage Task2;
+
+public class Baby {
+	private int rank;
+	private String Name;
+	
+	public Baby() {
+		this.rank = 0;
+		this.Name = "";
+	}
+	
+	public Baby(int rank) {
+		this.rank = rank;
+	}
+	
+	public int getRank() {
+		return this.rank;
+	}
+	
+	public String getName() {
+		return this.Name;
+	}
+}

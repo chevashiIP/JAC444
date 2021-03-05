@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Task1 {
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+		//String[] string = {"write", "that", "puppers", "pixel"};
+		String[] randomword = {"write", "that", "puppers", "pixel"};
+		String word = randomword[(int)(Math.random() * randomword.length)];
+		System.out.println(word);
+		
+	};
+	
+}

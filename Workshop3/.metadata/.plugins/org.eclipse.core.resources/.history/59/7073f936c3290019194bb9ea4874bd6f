@@ -1,0 +1,75 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class Task2 {
+	static double[][][] Banks;
+	static final int ID = 0;
+    static final int LOAN = 1;
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		boolean correct = false;
+		boolean correct1 = false;
+		int n = 0;
+		int limit = 0;
+		
+		while(!correct) {
+			try {
+				System.out.print("Number of banks: ");
+				n = input.nextInt();
+				correct = true;
+			} catch(InputMismatchException e) {
+				System.out.println("Wrong number of banks");
+				input.next();
+			}
+		}
+		
+		while(!correct1) {
+			try {
+				System.out.print("Minimum asset limit: ");
+				limit = input.nextInt();
+				correct1 = true;
+			} catch(InputMismatchException e) {
+				System.out.print("Wrong number of limit");
+				input.next();
+			}
+		}
+		
+		Banks = new double[n][][];
+		
+		System.out.println("Example:");
+        System.out.println("Bank # 0 -> Balance: 25 -> Number of banks Loaned: 2 -> Bank ID: 1 -> Amount: 100.5 -> Bank ID: 4 -> Amount: 320.5");
+        
+        for (int i = 0; i < Banks.length; i++) {
+        	System.out.print("Bank #"+ i +" -> Balance: ");
+        	double balance = input.nextDouble();
+        	System.out.print("Numbers of banks Loaned: ");
+        	int LoanedBanks = input.nextInt();
+        	
+        	Banks[i] = new double[++LoanedBanks][2];
+        	Banks[i][0][0] = balance;
+        	
+        	for (int j = 1; j < Banks[i].length; j++) {
+        		System.out.print("Bank ID: ");
+                Banks[i][j][ID] = input.nextDouble();
+                System.out.print("Amout: ");
+                Banks[i][j][LOAN] = input.nextDouble();
+            }
+        	
+        }
+        
+        displayMatrix(Banks);
+	}
+	 public static void displayMatrix(double[][][] m) {
+
+	        System.out.printf("%-5s%-5s%-5s%-5s%-5s%-5s%-5s\n",
+	                "bank # |", "balance |", "Loaned# |", "Bank ID |", "Amounts |", "Bank ID |", "Amounts |");
+	        for (int banks = 0; banks < m.length; banks++) {
+	            System.out.printf("%-7d|%8.2f|%8d|", banks, m[banks][0][0], m[banks].length -1);
+
+	            for (int LoanedBanks = 1; LoanedBanks < m[banks].length; LoanedBanks++) {
+	                System.out.printf("%8.0f|%8.2f|", m[banks][LoanedBanks][ID], m[banks][LoanedBanks][LOAN]);
+	            }
+	            System.out.println("");
+	        }
+	    }
+}

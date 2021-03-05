@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\serio\Desktop\Important Stuff\Учеба\Semester 4\JAC444\Workshop8\.metadata\.plugins\org.eclipse.jdt.core
+1120445957.index
+1735946202.index
+3308158393.index

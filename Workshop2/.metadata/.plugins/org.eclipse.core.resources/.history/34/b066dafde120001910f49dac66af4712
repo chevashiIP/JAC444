@@ -1,0 +1,68 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Task2 {
+	public static void main(String[] args){
+		int row = 0;
+		int column = 0;
+		boolean correct = false;
+		boolean correct1 = false;
+		System.out.print("Enter the number of rows and columns in the array: ");
+		while(!correct) {
+			Scanner input = new Scanner(System.in);
+			try {
+				row = input.nextInt();
+				column = input.nextInt();
+				correct = true;
+			} catch(InputMismatchException e) {
+				System.out.print("Incorrect format. Enter the rows and columns:");
+			}
+		}
+		double[][] array = new double[row][column];
+			
+		System.out.println("Enter the array: ");  
+				Scanner kk = new Scanner(System.in);
+				for(int i = 0; i < array.length; i++) {
+					for(int j = 0; j < array[i].length; j++) {
+						while(!correct1){
+							try{
+						System.out.print("Put a double in row " + i + " +  column"+j + ": ");
+						array[i][j] = kk.nextDouble();
+							} catch (InputMismatchException e){
+								System.out.print("Incorrect format. Enter the number into a row" + i + "column" +j+": ");
+							}
+						}
+					}
+				}
+				correct = true;
+		Location a = locateLargest(array);
+		System.out.print("The location of the largest element is " + a.maxValue + " at row "+a.row+" and column "+a.column);
+	}
+	public static Location locateLargest(double[][] a) {
+        double max = a[0][0];
+        int numrows = 0, numcolums = 0;
+        for (int i=0; i < a.length; i++){
+            for (int j=0; j < a[i].length; j++){
+                if (a[i][j] > max) {
+                    max = a[i][j];
+                    numrows=i;
+                    numcolums=j;
+                }
+            }
+        }
+
+        return new Location(numrows,numcolums,max);
+	}
+}
+class Location{
+	public int row,column;
+	public double maxValue;
+	Location(){
+		
+	}
+	Location(int m_row, int m_column, double m_maxValue){
+		this.row = m_row;
+		this.column = m_column;
+		this.maxValue = m_maxValue;
+	}
+}
